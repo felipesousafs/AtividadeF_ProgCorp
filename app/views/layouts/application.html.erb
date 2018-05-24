@@ -1,14 +1,167 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>AtividadeFProgcorp</title>
-    <%= csrf_meta_tags %>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "AtividadeF - IFPI" %></title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag "application", :media => "all" %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <!-- For all other devices -->
+  <!-- Size should be 32 x 32 pixels -->
+  <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+  <%= javascript_include_tag "application" %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+  <![endif]-->
+</head>
+
+<body class="skin-black-light sidebar-mini sidebar-collapse" style="height: auto; min-height: 100%;">
+<div id="RAILS_ENV_CONSTANT" style="display:none"><%= Rails.env %></div>
+<div class="wrapper">
+
+  <% if current_user %>
+      <header class="main-header">
+        <!-- Logo -->
+        <%= link_to root_path, class: 'logo' do %>
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>S</b>IC</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>S</b>IC</span>
+        <% end %>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Alternar navegação</span>
+          </a>
+
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%# if current_user %>
+                  <%= image_tag current_user.avatar.url(:thumb), class: 'user-image', style: 'width:25px; height: 25px;' %>
+                  <span class="hidden-xs"><%= current_user.name %> <span class="caret"></span></span>
+                  <%# else %>
+                  <!-- <span class="hidden-xs">Login</span> -->
+                  <%# end %>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <%= image_tag current_user.avatar.url(:thumb), class: 'img-circle', style: 'width:90px; height: 90px;' %>
+                    <p>
+                      <%= current_user.name %>
+                      <small id='current_user_email'><%= current_user.email %></small>
+                    </p>
+                  </li>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
+                      <%#= link_to edit_user_path(current_user.id) do %>
+                      <%= link_to edit_user_registration_path, class: "btn btn-default btn-xs" do %>
+                          Alterar
+                      <% end %>
+                    </div>
+                    <div class="pull-right">
+                      <!-- <a href="#" class="btn btn-default btn-flat">Sair</a> -->
+                      <%= link_to destroy_user_session_path, class: "btn btn-default btn-xs", method: :delete do %>
+                          <i class="fa fa-sign-out fa-fw"></i>
+                          Sair
+                      <% end %>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MENU PRINCIPAL</li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <% if current_user %>
+                <% if yield(:title_page).empty? %>
+                    <% if ["index", "new", "create", "edit", "update", "show", "search"].include?(action_name) %>
+                        <%= render 'layouts/title' %>
+                    <% end -%>
+                <% else %>
+                    <%= yield(:title_page) %>
+                <% end -%>
+            <% end %>
+
+            <small><b>S</b>istema de <b>I</b>dentificação de <b>C</b>ustódia - SIC - TJPI</small>
+          </h1>
+
+          <ol class="breadcrumb">
+            <%= render_breadcrumbs %>
+          </ol>
+
+        </section>
+  <% end %>
+
+  <!-- Main content -->
+  <section class="content">
+    <%= bootstrap_flash %>
+    <% if yield(:full_box).empty? %>
+        <div class="box box-primary">
+          <% unless yield(:full_box_header).empty? %>
+              <div class="box-header with-border">
+                <%= yield(:full_box_header) %>
+              </div>
+          <% end %>
+          <div class="box-body">
+            <%= yield %>
+          </div>
+          <% unless yield(:full_box_footer).empty? %>
+              <div class="box-footer">
+                <%= yield(:full_box_footer) %>
+              </div>
+          <% end %>
+        </div>
+    <% else %>
+        <%= yield %>
+    <% end %>
+  </section>
+  <!-- /.content -->
+  </div>
+
+  <% if current_user %>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>TJPI</b><%= image_tag "tjpit2.png", class: "logotjfooter" %>
+        </div>
+        <strong>Secretaria de Tecnologia da Informação e Comunicação</strong>
+        <%#= link_to "&copy;".html_safe, new_usuario_session_path %>
+        <%= Date.today.year %>
+      </footer>
+      <!-- ./wrapper -->
+  <% end %>
+</div>
+</body>
 </html>

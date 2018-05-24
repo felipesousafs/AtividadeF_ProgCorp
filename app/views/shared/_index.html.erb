@@ -1,0 +1,65 @@
+<% exceptions ||= ['id', 'created_at', 'updated_at', 'deleted_at'] %>
+
+<% if list.empty? %>
+Sem dados cadastrados
+<% else %>
+<table class="table table-striped" >
+  <thead>
+    <tr>
+      <% (list.first.class.column_names - exceptions).each do |column| %>
+      <th><%= list.first.class.human_attribute_name(column) %></th>
+      <% end %>
+      <th width='90px'>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% list.each do |object| %>
+    <tr>
+      <% (list.first.class.column_names - exceptions).each do |column| %>
+      <td>
+        <% if object.send(column).class == Date or
+          object.send(column).class == DateTime or
+          object.send(column).class == ActiveSupport::TimeWithZone or
+          object.send(column).class == Time %>
+          <%=l object.send(column) %>
+          <% else %>
+          <%= object.send(column) %>
+          <% end %>
+      </td>
+      <% end %>
+      <td>
+        <%= render 'shared/action_links', object: object %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if defined? list.total_pages %>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+      <div class='row'>
+        <div class='col-md-4'>
+          <%= page_entries_info list, entry_name: 'personagem' %>
+        </div>
+        <div class='col-md-8 text-right hidden-xs'>
+          <%= paginate list, window: 4 %>
+        </div>
+        <div class='col-md-8 text-center visible-xs'>
+          <%= paginate list, window: 1 %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+
+<% unless controller_name == 'users' || controller_name == 'logs' %>
+  <% if can? :new, controller_name.singularize %>
+    <% unless action_name == 'new' %>
+      <%= link_to eval("new_#{controller_name.singularize}_path"), class: "btn btn-primary" do %>
+        <%= t('.new', default: t("helpers.links.new")) %> <%= Kernel.const_get(controller_name.singularize.camelize).model_name.human %> <i class='fa fa-plus'></i>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

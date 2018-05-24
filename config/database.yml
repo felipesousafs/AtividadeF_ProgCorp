@@ -16,11 +16,11 @@
 #
 default: &default
   adapter: postgresql
-    encoding: utf8
-    pool: 5
-    host: localhost
-    username: postgres
-    password: 123456
+  encoding: utf8
+  pool: 5
+  host: localhost
+  username: postgres
+  password: 123456
 
 development:
   <<: *default
@@ -83,4 +83,4 @@ production:
   <<: *default
   database: AtividadeF_ProgCorp_production
   username: AtividadeF_ProgCorp
-  password: <%= ENV['ATIVIDADEF_PROGCORP_DATABASE_PASSWORD'] %>
+  password: 123456

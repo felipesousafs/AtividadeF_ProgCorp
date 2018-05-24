@@ -1,0 +1,26 @@
+<%= content_for :full_box do %>opa<% end %>
+
+<%= simple_form_for(object) do |f| %>
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">
+        Dados do <%=t object.class.model_name.human %>
+        <%= link_to 'Cancelar', eval_with_rescue("#{controller_name}_path"), class: "btn btn-default btn-xs" %>
+        <%= f.submit 'Salvar', class: 'btn btn-primary btn-xs' %>
+      </h3>
+    </div>
+    <div class="box-body">
+      <% (object.class.column_names - ['id', 'created_at', 'updated_at', 'deleted_at']).each do |column| %>
+        <% if object.class.column_for_attribute(column).type == :text %>
+          <%= f.input column, input_html: { rows: 10, cols: 20 } %>
+        <% else %>
+          <%= f.input column %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="box-footer">
+      <%= link_to 'Cancelar', eval_with_rescue("#{controller_name}_path"), class: "btn btn-default" %>
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
