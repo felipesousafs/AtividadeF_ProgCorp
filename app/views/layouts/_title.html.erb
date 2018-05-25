@@ -20,7 +20,7 @@
       <%= Kernel.const_get(controller_name.singularize.camelize).model_name.human.downcase %>
     <% end -%>
     <% unless controller_name == 'users' || controller_name == 'logs' %>
-      <% if can? :new, controller_name.singularize %>
+      <% #if can? :new, controller_name.singularize %>
         <% unless action_name == 'new' %>
           <% unless controller_name == 'psychosocials' %>
             <%= link_to eval("new_#{controller_name.singularize}_path"), class: "btn btn-primary btn-xs" do %>
@@ -28,6 +28,6 @@
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      <% #end %>
     <% end %>
 <% end -%>

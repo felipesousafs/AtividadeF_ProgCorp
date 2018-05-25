@@ -48,8 +48,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <%# if current_user %>
-                  <%= image_tag current_user.avatar.url(:thumb), class: 'user-image', style: 'width:25px; height: 25px;' %>
-                  <span class="hidden-xs"><%= current_user.name %> <span class="caret"></span></span>
+                  <span class="hidden-xs"><%= current_user.email %> <span class="caret"></span></span>
                   <%# else %>
                   <!-- <span class="hidden-xs">Login</span> -->
                   <%# end %>
@@ -57,9 +56,8 @@
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <%= image_tag current_user.avatar.url(:thumb), class: 'img-circle', style: 'width:90px; height: 90px;' %>
                     <p>
-                      <%= current_user.name %>
+                      <%= current_user.email %>
                       <small id='current_user_email'><%= current_user.email %></small>
                     </p>
                   </li>
@@ -154,7 +152,7 @@
       <!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>TJPI</b><%= image_tag "tjpit2.png", class: "logotjfooter" %>
+          <b>TJPI</b>
         </div>
         <strong>Secretaria de Tecnologia da Informação e Comunicação</strong>
         <%#= link_to "&copy;".html_safe, new_usuario_session_path %>

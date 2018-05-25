@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  resources :apartments
   devise_for :users, path: "u", :controllers => {
       sessions: 'users/sessions'
   }
   devise_scope :user do
     authenticated :user do
-      root 'users/sessions#index', as: :authenticated_root
+      root 'apartments#index', as: :authenticated_root
     end
 
     unauthenticated do
