@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apartment_id: 1
+  value: 1.5
+  due_date: 2018-05-26 22:07:24
+  paid: false
+
+two:
+  apartment_id: 1
+  value: 1.5
+  due_date: 2018-05-26 22:07:24
+  paid: false

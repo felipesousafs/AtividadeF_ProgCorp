@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Apartment:</strong>
+  <%= @condominium_fee.apartment_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @condominium_fee.value %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @condominium_fee.due_date %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @condominium_fee.paid %>
+</p>
+
+<%= link_to 'Edit', edit_condominium_fee_path(@condominium_fee) %> |
+<%= link_to 'Back', condominium_fees_path %>

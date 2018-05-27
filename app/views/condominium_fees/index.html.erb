@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Condominium Fees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Apartment</th>
+      <th>Value</th>
+      <th>Due date</th>
+      <th>Paid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @condominium_fees.each do |condominium_fee| %>
+      <tr>
+        <td><%= condominium_fee.apartment_id %></td>
+        <td><%= condominium_fee.value %></td>
+        <td><%= condominium_fee.due_date %></td>
+        <td><%= condominium_fee.paid %></td>
+        <td><%= link_to 'Show', condominium_fee %></td>
+        <td><%= link_to 'Edit', edit_condominium_fee_path(condominium_fee) %></td>
+        <td><%= link_to 'Destroy', condominium_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Condominium Fee', new_condominium_fee_path %>

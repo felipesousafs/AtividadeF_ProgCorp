@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180526224819) do
+ActiveRecord::Schema.define(version: 20180527010724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20180526224819) do
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_apartments_on_owner_id"
     t.index ["resident_id"], name: "index_apartments_on_resident_id"
+  end
+
+  create_table "condominium_fees", force: :cascade do |t|
+    t.float "value"
+    t.datetime "due_date"
+    t.boolean "paid"
+    t.bigint "apartment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apartment_id"], name: "index_condominium_fees_on_apartment_id"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -56,4 +66,5 @@ ActiveRecord::Schema.define(version: 20180526224819) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "condominium_fees", "apartments"
 end

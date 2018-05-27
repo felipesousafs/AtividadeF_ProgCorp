@@ -1,0 +1,2 @@
+class CondominiumFee < ApplicationRecord
+end

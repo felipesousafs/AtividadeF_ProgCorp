@@ -99,7 +99,12 @@
             </li>
             <li class="<%= 'active' if controller_name == "expenses" %>">
               <%= link_to expenses_path do %>
-                  <i class="fa fa-money"></i> <span><%= Expense.model_name.human.pluralize %></span>
+                  <i class="fa fa-dollar"></i><span><%= Expense.model_name.human.pluralize %></span>
+              <% end %>
+            </li>
+            <li class="<%= 'active' if controller_name == "condominium_fees" %>">
+              <%= link_to condominium_fees_path do %>
+                  <i class="fa fa-money"></i> <span><%= CondominiumFee.model_name.human.pluralize %></span>
               <% end %>
             </li>
           </ul>
