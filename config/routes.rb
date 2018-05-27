@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'fees/generate', to: 'condominium_fees#generate_fees', as: 'generate_fees'
+  get 'fees/generate/:apartment', to: 'condominium_fees#generate_fees', as: 'generate_fee'
+
   root 'users/sessions#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

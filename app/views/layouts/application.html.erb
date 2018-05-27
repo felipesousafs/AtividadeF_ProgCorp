@@ -102,10 +102,25 @@
                   <i class="fa fa-dollar"></i><span><%= Expense.model_name.human.pluralize %></span>
               <% end %>
             </li>
-            <li class="<%= 'active' if controller_name == "condominium_fees" %>">
-              <%= link_to condominium_fees_path do %>
-                  <i class="fa fa-money"></i> <span><%= CondominiumFee.model_name.human.pluralize %></span>
-              <% end %>
+            <li class="treeview <%= 'active' if controller_name == 'condominium_fees' %>">
+              <a href="#">
+                <i class="fa fa-money"></i> <span>Condomínio</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="<%= 'active' if controller_name == "condominium_fees" %>">
+                  <%= link_to condominium_fees_path do %>
+                      <i class="fa fa-list"></i> <span>Taxas de condomínio</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to generate_fees_path do %>
+                      <i class="fa fa-list"></i> <span>Gerar taxas</span>
+                  <% end %>
+                </li>
+              </ul>
             </li>
           </ul>
         </section>

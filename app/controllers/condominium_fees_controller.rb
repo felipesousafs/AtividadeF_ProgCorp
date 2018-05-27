@@ -61,6 +61,21 @@ class CondominiumFeesController < ApplicationController
     end
   end
 
+  def generate_fees
+    date = params[:date]
+    ap_id = params[:apartment]
+    if ap_id
+      success = CondominiumFee.generate_condominium_fee(Apartment.where(id: ap_id), Date.today)
+    else
+      success = CondominiumFee.generate_condominium_fee(Apartment.all, Date.today)
+    end
+    if success
+      redirect_to condominium_fees_path, notice: 'Taxas atualizadas.'
+    else
+      redirect_to condominium_fees_path, error: 'Um erro ocorreu.'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_condominium_fee

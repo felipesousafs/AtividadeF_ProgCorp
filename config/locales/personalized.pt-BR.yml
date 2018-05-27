@@ -1,0 +1,34 @@
+# encoding: UTF-8
+pt-BR:
+  activerecord:
+    models: &MODELS
+      user: Usuário
+      role: Tipo de Acesso
+    attributes:
+      name_and_description: &BASIC
+        name: Nome
+        date: Data
+        description: Descrição
+        created_at: Criação
+        updated_at: Atualização
+      user:
+        name: Nome
+        created_at: Criação
+        role: Permissão
+        username: Usuário
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Nenhum %{entry_name} encontrado(a)"
+          one: "Exibindo <b>1</b> %{entry_name}"
+          other: "Exibindo <b>%{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Exibindo %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> no total"
