@@ -24,17 +24,6 @@ class CondominiumFeesController < ApplicationController
   # POST /condominium_fees
   # POST /condominium_fees.json
   def create
-    @condominium_fee = CondominiumFee.new(condominium_fee_params)
-
-    respond_to do |format|
-      if @condominium_fee.save
-        format.html { redirect_to @condominium_fee, notice: 'Condominium fee was successfully created.' }
-        format.json { render :show, status: :created, location: @condominium_fee }
-      else
-        format.html { render :new }
-        format.json { render json: @condominium_fee.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /condominium_fees/1
@@ -62,13 +51,10 @@ class CondominiumFeesController < ApplicationController
   end
 
   def generate_fees
-    date = params[:date]
-    ap_id = params[:apartment]
-    if ap_id
-      success = CondominiumFee.generate_condominium_fee(Apartment.where(id: ap_id), Date.today)
-    else
-      success = CondominiumFee.generate_condominium_fee(Apartment.all, Date.today)
-    end
+    due_date = params[:condominium_fee][:due_date].to_date
+    puts '-----------------------------'
+    puts due_date
+    success = CondominiumFee.generate_condominium_fee(Apartment.all, due_date)
     if success
       redirect_to condominium_fees_path, notice: 'Taxas atualizadas.'
     else

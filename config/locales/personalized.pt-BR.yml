@@ -4,6 +4,7 @@ pt-BR:
     models: &MODELS
       user: Usuário
       role: Tipo de Acesso
+      condominium_fee: Taxa de condomínio
     attributes:
       name_and_description: &BASIC
         name: Nome
@@ -16,6 +17,9 @@ pt-BR:
         created_at: Criação
         role: Permissão
         username: Usuário
+      condominium_fee:
+        value: Valor
+        due_date: Data limite para pagamento
   views:
     pagination:
       first: "&laquo;"

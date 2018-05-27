@@ -13,13 +13,13 @@ class CondominiumFee < ApplicationRecord
     end
   end
 
-  def self.generate_condominium_fee(apartments = [], due_date)
+  def self.generate_condominium_fee(apartments = [], due_date = '')
     apartments.each do |ap|
       fee = CondominiumFee.new()
       fee.apartment = ap
       value = ap.expenses.this_month.calculate(:sum, :value) + Expense.this_month(due_date).where(is_fixed_value: true).calculate(:sum, :value)
       fee.value = value
-      fee.due_date = due_date + 15.days
+      fee.due_date = due_date
       if self.uniq_this_month_validator(ap)
         fee.save!
       end
