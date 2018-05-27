@@ -47,7 +47,20 @@ function apply_chosen() {
     });
 }
 
+function is_fixed() {
+    document.getElementById("expense_is_fixed_value").checked = false;
+    $("#expense_is_fixed_value").change(function() {
+        if(this.checked) {
+            $("#expense_apartment_id").val('');
+            $("#expense_apartment_id").attr('disabled','disabled');
+        }else{
+            $("#expense_apartment_id").removeAttr('disabled');
+        }
+    });
+}
+
 $(document).ready(function () {
+    is_fixed();
 
     $("#galeria_jutified").justifiedGallery({
         rowHeight: 120,
