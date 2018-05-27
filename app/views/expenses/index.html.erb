@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Apartment</th>
+      <th>Description</th>
+      <th>Is fixed value</th>
+      <th>Value</th>
+      <th>Month of ref</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.apartment_id %></td>
+        <td><%= expense.description %></td>
+        <td><%= expense.is_fixed_value %></td>
+        <td><%= expense.value %></td>
+        <td><%= expense.month_of_ref %></td>
+        <td><%= link_to 'Show', expense %></td>
+        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense', new_expense_path %>

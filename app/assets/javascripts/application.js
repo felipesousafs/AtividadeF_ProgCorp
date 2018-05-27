@@ -38,107 +38,113 @@
 //= require js.cookie
 
 function apply_chosen() {
-  $(".chosen-select").attr("data-placeholder", "Escolha uma opção...");
+    $(".chosen-select").attr("data-placeholder", "Escolha uma opção...");
 
-  $('.chosen-select').chosen({
-    allow_single_deselect: true,
-    no_results_text: 'Não encontrado',
-    width: '100%'
-  });
+    $('.chosen-select').chosen({
+        allow_single_deselect: true,
+        no_results_text: 'Não encontrado',
+        width: '100%'
+    });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-  $("#galeria_jutified").justifiedGallery({
-    rowHeight : 120,
-    lastRow : 'nojustify',
-    margins : 2
-  });
+    $("#galeria_jutified").justifiedGallery({
+        rowHeight: 120,
+        lastRow: 'nojustify',
+        margins: 2
+    });
 
-  $('.galeria_photos a').simpleLightbox({
-    captionPosition: 'top',
-    captionClass: 'simpleLightboxCaption',
-    className: 'simple-lightbox'
-  });
+    $('.galeria_photos a').simpleLightbox({
+        captionPosition: 'top',
+        captionClass: 'simpleLightboxCaption',
+        className: 'simple-lightbox'
+    });
 
-  $('.galeria_timeline a').simpleLightbox({
-    captionPosition: 'top',
-    captionClass: 'simpleLightboxCaption',
-    className: 'simple-lightbox'
-  });
+    $('.galeria_timeline a').simpleLightbox({
+        captionPosition: 'top',
+        captionClass: 'simpleLightboxCaption',
+        className: 'simple-lightbox'
+    });
 
-  $('.datepicker').datepicker({
-    language: 'pt-BR'
-  });
+    $('.datepicker').datepicker({
+        language: 'pt-BR',
+    });
 
-  apply_chosen();
+    $(".monthpicker").datepicker( {
+        format: "mm-yyyy",
+        startView: "months",
+        minViewMode: "months"
+    });
 
-  $('#family_compositions').on('cocoon:after-insert', function(e, insertedItem) {
     apply_chosen();
-  });
 
-  $('#documents').on('cocoon:after-insert', function(e, insertedItem) {
-    apply_chosen();
-  });
-
-  // tamanho limitado
-  $('.bootstrap-table').bootstrapTable({
-    showExport: false,
-    search: false,
-    striped: true,
-    mobileResponsive: true
-  });
-
-  $(".addon_icon").keyup(function() {
-      $(this).next().find("i").attr("class", "fa " + $(this).val());
-  });
-
-  $(".addon_color").keyup(function() {
-      $(this).next().attr("class", "input-group-addon " + $(this).val());
-  });
-
-  // Fixar o campo de pesquisa ao colocar o foco no campo input
-  $( 'input').focusin(function() {
-    $('.has-feedback').addClass("showClass");
-  });
-
-  $('input').focusout(function() {
-    $('.has-feedback').removeClass("showClass");
-  });
-
-  $('#photos').on('cocoon:after-insert', function(e, insertedItem) {
-    $("input[id$=_avatar]:last").fileinput({
-      language: 'pt-BR',
-      'previewFileType':'any',
-      allowedFileExtensions: ['jpg', 'jpeg', 'png'],
-      showRemove: false,
-      showClose: false,
-      showUpload: false
+    $('#family_compositions').on('cocoon:after-insert', function (e, insertedItem) {
+        apply_chosen();
     });
-    $("input[id$=_tag_list]:last").magicSuggest({
-      data: $("#tags").data("tags")
-    });
-  });
 
-  $("input[id$=_tag_list]").each(function (i, el) {
-    $($(this)).magicSuggest({
-      data: $("#tags").data("tags")
+    $('#documents').on('cocoon:after-insert', function (e, insertedItem) {
+        apply_chosen();
     });
-  });
 
-  $("input[id$=_avatar]").each(function (i, el) {
-    $($(this)).fileinput({
-      language: 'pt-BR',
-      'previewFileType':'any',
-      initialPreviewAsData: true,
-      initialPreview: $(this).data('url'),
-      initialPreviewConfig: [
-        { caption: "Moon.jpg", height: 'auto', widht: '120px', showDelete: false, showDrag: false, key: 1 }
-      ],
-      allowedFileExtensions: ['jpg', 'jpeg', 'png'],
-      showRemove: false,
-      showClose: false,
-      showUpload: false
+    // tamanho limitado
+    $('.bootstrap-table').bootstrapTable({
+        showExport: false,
+        search: false,
+        striped: true,
+        mobileResponsive: true
     });
-  });
+
+    $(".addon_icon").keyup(function () {
+        $(this).next().find("i").attr("class", "fa " + $(this).val());
+    });
+
+    $(".addon_color").keyup(function () {
+        $(this).next().attr("class", "input-group-addon " + $(this).val());
+    });
+
+    // Fixar o campo de pesquisa ao colocar o foco no campo input
+    $('input').focusin(function () {
+        $('.has-feedback').addClass("showClass");
+    });
+
+    $('input').focusout(function () {
+        $('.has-feedback').removeClass("showClass");
+    });
+
+    $('#photos').on('cocoon:after-insert', function (e, insertedItem) {
+        $("input[id$=_avatar]:last").fileinput({
+            language: 'pt-BR',
+            'previewFileType': 'any',
+            allowedFileExtensions: ['jpg', 'jpeg', 'png'],
+            showRemove: false,
+            showClose: false,
+            showUpload: false
+        });
+        $("input[id$=_tag_list]:last").magicSuggest({
+            data: $("#tags").data("tags")
+        });
+    });
+
+    $("input[id$=_tag_list]").each(function (i, el) {
+        $($(this)).magicSuggest({
+            data: $("#tags").data("tags")
+        });
+    });
+
+    $("input[id$=_avatar]").each(function (i, el) {
+        $($(this)).fileinput({
+            language: 'pt-BR',
+            'previewFileType': 'any',
+            initialPreviewAsData: true,
+            initialPreview: $(this).data('url'),
+            initialPreviewConfig: [
+                {caption: "Moon.jpg", height: 'auto', widht: '120px', showDelete: false, showDrag: false, key: 1}
+            ],
+            allowedFileExtensions: ['jpg', 'jpeg', 'png'],
+            showRemove: false,
+            showClose: false,
+            showUpload: false
+        });
+    });
 });

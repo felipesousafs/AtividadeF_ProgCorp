@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :expenses
   resources :apartments
   devise_for :users, path: "u", :controllers => {
       sessions: 'users/sessions'

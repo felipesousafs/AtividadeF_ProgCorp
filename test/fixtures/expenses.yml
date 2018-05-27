@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apartment_id: 1
+  description: MyString
+  is_fixed_value: false
+  value: 1.5
+  month_of_ref: 2018-05-26 19:48:19
+
+two:
+  apartment_id: 1
+  description: MyString
+  is_fixed_value: false
+  value: 1.5
+  month_of_ref: 2018-05-26 19:48:19

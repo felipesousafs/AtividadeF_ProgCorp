@@ -18,8 +18,8 @@
       <tr>
         <td><%= apartment.number %></td>
         <td><%= apartment.number_of_rooms %></td>
-        <td><%= apartment.resident %></td>
-        <td><%= apartment.owner %></td>
+        <td><%= apartment.resident.name %></td>
+        <td><%= apartment.owner.name %></td>
         <td><%= link_to 'Show', apartment %></td>
         <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
         <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

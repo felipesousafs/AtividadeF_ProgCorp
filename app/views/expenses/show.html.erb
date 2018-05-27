@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Apartment:</strong>
+  <%= @expense.apartment_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @expense.description %>
+</p>
+
+<p>
+  <strong>Is fixed value:</strong>
+  <%= @expense.is_fixed_value %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @expense.value %>
+</p>
+
+<p>
+  <strong>Month of ref:</strong>
+  <%= @expense.month_of_ref %>
+</p>
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>
