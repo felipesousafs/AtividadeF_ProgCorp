@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'apartments/:id/fees', to: 'apartments#fees', as: 'apartment_fees'
   post 'fees/generate', to: 'condominium_fees#generate_fees', as: 'generate_fees'
 
   root 'users/sessions#index'

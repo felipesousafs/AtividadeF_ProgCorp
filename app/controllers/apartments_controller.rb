@@ -1,5 +1,5 @@
 class ApartmentsController < ApplicationController
-  before_action :set_apartment, only: [:show, :edit, :update, :destroy]
+  before_action :set_apartment, only: [:show, :edit, :update, :destroy, :fees]
 
   # GET /apartments
   # GET /apartments.json
@@ -59,6 +59,11 @@ class ApartmentsController < ApplicationController
       format.html {redirect_to apartments_url, notice: 'Apartment was successfully destroyed.'}
       format.json {head :no_content}
     end
+  end
+
+  def fees
+    @condominium_fees = @apartment.condominium_fees
+    @expenses = Expense.this_month
   end
 
   private
