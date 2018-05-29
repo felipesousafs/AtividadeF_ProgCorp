@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   end
 
   get 'apartments/:id/fees', to: 'apartments#fees', as: 'apartment_fees'
+  get 'condominium_fees/:id/payment', to: 'condominium_fees#payment_page', as: 'payment_page'
+  patch 'condominium_fees/:id/pay', to: 'condominium_fees#pay', as: 'pay_fee'
   post 'fees/generate', to: 'condominium_fees#generate_fees', as: 'generate_fees'
 
   root 'users/sessions#index'

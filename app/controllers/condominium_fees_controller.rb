@@ -1,5 +1,5 @@
 class CondominiumFeesController < ApplicationController
-  before_action :set_condominium_fee, only: [:show, :edit, :update, :destroy]
+  before_action :set_condominium_fee, only: [:show, :edit, :update, :destroy, :payment_page]
 
   # GET /condominium_fees
   # GET /condominium_fees.json
@@ -31,7 +31,7 @@ class CondominiumFeesController < ApplicationController
   def update
     respond_to do |format|
       if @condominium_fee.update(condominium_fee_params)
-        format.html { redirect_to @condominium_fee, notice: 'Condominium fee was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Condominium fee was successfully updated.' }
         format.json { render :show, status: :ok, location: @condominium_fee }
       else
         format.html { render :edit }
@@ -59,6 +59,40 @@ class CondominiumFeesController < ApplicationController
       redirect_to condominium_fees_path, notice: 'Taxas atualizadas.'
     else
       redirect_to condominium_fees_path, error: 'Um erro ocorreu.'
+    end
+  end
+
+  def payment_page
+  end
+  def pay
+    @condominium_fee = CondominiumFee.find(params[:id])
+    if params[:postponed]
+      @condominium_fee.postponed = true
+      @expense = Expense.new
+      @expense.apartment = @condominium_fee.apartment
+      @expense.description = 'Multa 5% - Pagamento adiado para mês seguinte'
+      @expense.value = (@condominium_fee.value * 5)/100
+      @expense.month_of_ref = @condominium_fee.created_at + 1.month
+      respond_to do |format|
+        if @expense.save and @condominium_fee.save
+          format.html { redirect_to root_url, notice: 'O pagamento da taxa de condomínio selecionada foi adiado com sucesso.' }
+          format.json { render :show, status: :ok, location: @expense }
+        else
+          format.html { render :edit }
+          format.json { render json: @condominium_fee.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @condominium_fee.paid = true
+      respond_to do |format|
+        if @condominium_fee.save
+          format.html { redirect_to root_url, notice: 'A taxa de condomínio selecionada foi marcada como quitada.' }
+          format.json { render :show, status: :ok, location: @condominium_fee }
+        else
+          format.html { render :edit }
+          format.json { render json: @condominium_fee.errors, status: :unprocessable_entity }
+        end
+      end
     end
   end
 

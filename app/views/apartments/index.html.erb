@@ -1,29 +1,27 @@
 <table id="example" class="table table-striped table-bordered">
   <thead>
-    <tr>
-      <th>Number</th>
-      <th>Number of rooms</th>
-      <th>Resident</th>
-      <th>Owner</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Number</th>
+    <th>Number of rooms</th>
+    <th>Resident</th>
+    <th>Owner</th>
+    <th colspan="3">Opções</th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @apartments.each do |apartment| %>
+  <% @apartments.each do |apartment| %>
       <tr>
-        <td><%= apartment.number %></td>
-        <td><%= apartment.number_of_rooms %></td>
-        <td><%= apartment.resident.name %></td>
-        <td><%= apartment.owner.name %></td>
-        <td><%= link_to 'Show', apartment %></td>
-        <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
-        <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-justify"><%= apartment.number %></td>
+        <td class="text-justify"><%= apartment.number_of_rooms %></td>
+        <td class="text-justify"><%= apartment.resident ? apartment.resident.name : 'Não informado' %></td>
+        <td class="text-justify"><%= apartment.owner.name %></td>
+        <td class="text-center">
+          <%= render "shared/action_links", object: apartment %>
+        </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Apartment', new_apartment_path %>

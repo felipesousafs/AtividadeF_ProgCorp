@@ -34,4 +34,12 @@ module ApplicationHelper
     end
     flash_messages.join("\n").html_safe
   end
+
+  def eval_with_rescue(code)
+    begin
+      eval(code)
+    rescue Exception => e
+      "error"
+    end
+  end
 end

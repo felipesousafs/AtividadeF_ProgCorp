@@ -1,4 +1,5 @@
-<%= content_for :full_box do %>opa<% end %>
+<%= content_for :full_box do %>opa
+<% end %>
 <div class="box box-primary box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">
@@ -20,7 +21,7 @@
         <th>Value</th>
         <th>Due date</th>
         <th>Month Ref</th>
-        <th>Paid</th>
+        <th>Status</th>
       </tr>
       </thead>
 
@@ -31,7 +32,20 @@
             <td><%= condominium_fee.value %></td>
             <td><%= l(condominium_fee.due_date, format: :date) %></td>
             <td><%= l(condominium_fee.month_ref, format: :month_and_year) %></td>
-            <td><%= condominium_fee.paid ? 'Sim' : 'Não' %></td>
+            <td>
+              <% if condominium_fee.paid %>
+                  <span class="label label-success">Pago <i class="fa fa-check"></i></span>
+              <% elsif condominium_fee.postponed %>
+                  <span class="label label-default">Pagamento Adiado <i class="fa fa-clock"></i></span>
+              <% else %>
+                  <%= link_to payment_page_path(condominium_fee), class: 'btn btn-xs btn-info' do %>
+                      Pagar taxa <i class="fa fa-dollar"></i>
+                  <% end %>
+                  <%= link_to payment_page_path(condominium_fee, postponed: true), class: 'btn btn-xs btn-warning' do %>
+                      Adiar pagamento <i class="fa fa-dollar"></i>
+                  <% end %>
+              <% end %>
+            </td>
           </tr>
       <% end %>
       </tbody>
@@ -43,7 +57,7 @@
 <div class="box box-primary box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">
-      <i class="fa fa-dollar"></i> <span>Despesas gerais</span>
+      <i class="fa fa-dollar"></i> <span>Despesas gerais <small style="color: #f0f0f0"> (despesas fixas são divididas proporcionalmente entre todos os apartamentos)</small></span>
     </h3>
 
     <div class="box-tools pull-right">
