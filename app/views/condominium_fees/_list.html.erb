@@ -14,7 +14,7 @@
     <% @condominium_fees.each do |condominium_fee| %>
       <tr>
         <td><%= condominium_fee.apartment_id %></td>
-        <td><%= condominium_fee.value %></td>
+        <td><%= condominium_fee.value2f %></td>
         <td><%= l(condominium_fee.due_date, format: :date) %></td>
         <td><%= l(condominium_fee.month_ref, format: :month_and_year) %></td>
         <td><%= condominium_fee.paid ? 'Sim' : 'Não' %></td>

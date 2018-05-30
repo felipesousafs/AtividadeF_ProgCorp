@@ -1,5 +1,6 @@
 class CondominiumFeesController < ApplicationController
   before_action :set_condominium_fee, only: [:show, :edit, :update, :destroy, :payment_page]
+  before_action :require_login
 
   # GET /condominium_fees
   # GET /condominium_fees.json
@@ -64,6 +65,7 @@ class CondominiumFeesController < ApplicationController
 
   def payment_page
   end
+
   def pay
     @condominium_fee = CondominiumFee.find(params[:id])
     if params[:postponed]
@@ -83,6 +85,9 @@ class CondominiumFeesController < ApplicationController
         end
       end
     else
+      if Date.today > @condominium_fee.due_date
+        @condominium_fee.value += (@condominium_fee.value*2)/100
+      end
       @condominium_fee.paid = true
       respond_to do |format|
         if @condominium_fee.save

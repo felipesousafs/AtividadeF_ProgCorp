@@ -33,6 +33,7 @@ GEM
       activemodel (= 5.1.6)
       activesupport (= 5.1.6)
       arel (~> 8.0)
+    activerecord-reset-pk-sequence (0.2.1)
     activesupport (5.1.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -185,6 +186,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rolify (5.2.0)
     rubocop (0.55.0)
       parallel (~> 1.10)
       parser (>= 2.5)
@@ -249,6 +251,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-reset-pk-sequence
   acts-as-taggable-on (~> 4.0)
   bootstrap-datepicker-rails
   bootstrap-sass
@@ -273,6 +276,7 @@ DEPENDENCIES
   pg_search
   puma (~> 3.7)
   rails (~> 5.1.6)
+  rolify
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver

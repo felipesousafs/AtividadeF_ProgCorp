@@ -67,6 +67,7 @@ gem 'breadcrumbs_on_rails'
 gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
+gem 'rolify'
 gem 'jquery-justified-gallery-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'maskedinput-rails'
@@ -75,3 +76,6 @@ gem 'pg_search'
 gem 'acts-as-taggable-on', '~> 4.0'
 # Nested scaffold generator for Rails 4.2 and 5
 gem 'nested_scaffold'
+
+# reset pk references
+gem 'activerecord-reset-pk-sequence'

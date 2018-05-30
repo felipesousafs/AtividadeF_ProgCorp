@@ -1,10 +1,15 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy, :fees]
+  before_action :require_login
 
   # GET /apartments
   # GET /apartments.json
   def index
-    @apartments = Apartment.all
+    if can? :edit, Apartment
+      @apartments = Apartment.all
+    else
+      @apartments = Apartment.where(resident_id: current_user.id).or(Apartment.where(owner_id: current_user.id))
+    end
   end
 
   # GET /apartments/1
@@ -63,7 +68,7 @@ class ApartmentsController < ApplicationController
 
   def fees
     @condominium_fees = @apartment.condominium_fees
-    @expenses = Expense.this_month
+    @expenses = Expense.this_month(Date.today)
   end
 
   private
