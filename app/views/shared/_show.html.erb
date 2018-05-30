@@ -1,0 +1,41 @@
+<%= content_for :full_box do %>opa<% end %>
+
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%=t object.class.model_name.human %></h3>
+    <% if can? :edit, object %> <!--verificando se o usuario esta logado-->
+      <%= link_to eval_with_rescue("edit_#{controller_name.singularize}_path(#{object.id})"), class: "btn btn-warning btn-xs", data: { toggle: 'tooltip', placement: 'top', title: 'Editar' } do %>
+        <i class="fa fa-pencil"></i> Editar
+      <% end %>
+    <% end %>
+    <%= link_to 'Listagem', eval_with_rescue("#{controller_name}_path"), class: "btn btn-default btn-xs" %>
+  </div>
+  <div class="box-body no-padding">
+    <table class="table table-bordered table-striped no-padding">
+      <% (object.class.column_names - ['id', 'created_at', 'updated_at', 'deleted_at']).each do |column| %>
+        <tr>
+          <th width='15%'><%= object.class.human_attribute_name(column) %></th>
+          <td>
+            <% if object.send(column).class == Date or
+              object.send(column).class == DateTime or
+              object.send(column).class == ActiveSupport::TimeWithZone or
+              object.send(column).class == Time %>
+              <%=l object.send(column) %>
+            <% else %>
+              <%= object.send(column) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="box-footer">
+    <% if can? :edit, object %> <!--verificando se o usuario esta logado-->
+      <%= link_to eval_with_rescue("edit_#{controller_name.singularize}_path(#{object.id})"), class: "btn btn-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Editar' } do %>
+        <i class="fa fa-pencil"></i> Editar
+      <% end %>
+    <% end %>
+
+    <%= link_to 'Listagem', eval_with_rescue("#{controller_name}_path"), class: "btn btn-default" %>
+  </div>
+</div>

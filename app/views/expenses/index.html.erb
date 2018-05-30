@@ -1,0 +1,26 @@
+<table id="example" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Apartment</th>
+      <th>Description</th>
+      <th>Is fixed value</th>
+      <th>Value</th>
+      <th>Month of ref</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.apartment_id %></td>
+        <td><%= expense.description %></td>
+        <td><%= expense.is_fixed_value %></td>
+        <td><%= expense.value2f %></td>
+        <td><%= expense.month_of_ref %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

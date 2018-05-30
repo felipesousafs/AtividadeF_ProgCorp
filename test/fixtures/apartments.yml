@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  number_of_rooms: 1
+  resident: 
+  owner: 
+
+two:
+  number: 1
+  number_of_rooms: 1
+  resident: 
+  owner: 

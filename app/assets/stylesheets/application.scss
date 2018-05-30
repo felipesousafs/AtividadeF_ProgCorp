@@ -1,0 +1,227 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "AdminLTE";
+@import "font-awesome";
+@import "skins/skin-black-light";
+@import "bootstrap-table";
+@import "chosen";
+@import "chosen-bootstrap";
+
+@import "simplelightbox";
+@import "justifiedGallery";
+@import "bootstrap-datepicker3";
+
+@import "magicsuggest";
+
+
+.bg-white {
+  background: white;
+}
+
+.sl-caption {
+  text-align: center;
+}
+
+.sl-overlay {
+  background: black;
+}
+
+.sl-close {
+  color: white !important;
+}
+
+.sl-counter {
+  color: white !important;
+  font-size: 20px !important;
+}
+
+.sl-navigation button {
+  color: white !important;
+}
+
+.pagination {
+  margin: 0px !important;
+}
+
+a:hover span.label {
+  color: #FFF;
+  background: #000;
+}
+
+$size: 120px;
+
+.info-box {
+  min-height: $size;
+
+  img.principal {
+    width: $size;
+    height: $size;
+    vertical-align: top;
+  }
+}
+
+.info-box-icon {
+  width: $size;
+  height: $size;
+}
+
+.info-box-content {
+  margin-left: $size;
+}
+
+$size: 80px;
+
+@media(max-width:767px){
+  .info-box {
+    min-height: $size;
+
+    img.principal {
+      width: $size;
+      height: $size;
+      vertical-align: top;
+    }
+  }
+
+  .info-box-icon {
+    width: $size;
+    height: $size;
+  }
+
+  .info-box-content {
+    margin-left: $size;
+  }
+}
+
+@font-face {
+   font-family: 'Glyphicons Halflings';
+   src: url(asset_path('glyphicons-halflings-regular.eot'));
+   src: url(asset_path('glyphicons-halflings-regular.eot?#iefix')) format('embedded-opentype'),
+   url(asset_path('glyphicons-halflings-regular.woff')) format('woff'),
+   url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'),
+   url(asset_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
+}
+
+.logotjfooter {
+    width: 25px;
+    margin-top: -6px;
+    margin-left: 4px;
+}
+
+.date {
+  width: 100% !important;
+}
+
+#photos {
+  .box-body {
+    height: 445px;
+  }
+}
+
+.btn-primary {
+  color: white !important;
+}
+
+@media(min-width:767px){
+  .top-25 {
+    top: 25px;
+  }
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+table.dataTable thead > tr.sorting_disabled > th {
+  padding-right: 8px !important;
+}
+
+table.dataTable thead > tr > th.sorting_disabled {
+  padding-right: 8px !important;
+}
+
+#botoes {
+  margin-top: 25px;
+}
+
+table.dataTable > tbody > tr.child ul {
+  width: 100% !important;
+}
+
+
+/* Search Character */
+.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none;
+}
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  width: 100%;
+  border-radius: 4px 25px 25px 4px;
+}
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #3596e0;
+  left: initial;
+  font-size: 14px;
+}
+
+.search-form .form-group.showClass{
+  width: 100%;
+  border-radius: 4px 25px 25px 4px;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 99.99vh;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align : center;
+  -webkit-align-items : center;
+  -moz-box-align : center;
+  -ms-flex-align : center;
+  align-items : center;
+  width: 100%;
+  -webkit-box-pack : center;
+  -moz-box-pack : center;
+  -ms-flex-pack : center;
+  -webkit-justify-content : center;
+  justify-content : center;
+}
