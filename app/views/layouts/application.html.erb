@@ -102,6 +102,7 @@
                   <i class="fa fa-dollar"></i><span><%= Expense.model_name.human.pluralize %></span>
               <% end %>
             </li>
+            <% if can? :manage, CondominiumFee %>
             <li class="treeview <%= 'active' if controller_name == 'condominium_fees' %>">
               <a href="#">
                 <i class="fa fa-money"></i> <span>Condomínio</span>
@@ -122,6 +123,7 @@
                 </li>
               </ul>
             </li>
+                <% end %>
           </ul>
         </section>
         <!-- /.sidebar -->

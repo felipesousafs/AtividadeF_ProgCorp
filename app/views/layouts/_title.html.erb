@@ -23,9 +23,11 @@
         <% #if can? :new, controller_name.singularize %>
         <% unless action_name == 'new' %>
             <% unless controller_name == 'condominium_fees' %>
-                <%= link_to eval("new_#{controller_name.singularize}_path"), class: "btn btn-primary btn-xs" do %>
-                    <%= t('.new', default: t("helpers.links.new")) %> <%= Kernel.const_get(controller_name.singularize.camelize).model_name.human %>
-                    <i class='fa fa-plus'></i>
+                <% if can? :edit, Apartment %>
+                    <%= link_to eval("new_#{controller_name.singularize}_path"), class: "btn btn-primary btn-xs" do %>
+                        <%= t('.new', default: t("helpers.links.new")) %> <%= Kernel.const_get(controller_name.singularize.camelize).model_name.human %>
+                        <i class='fa fa-plus'></i>
+                    <% end %>
                 <% end %>
             <% end %>
         <% end %>

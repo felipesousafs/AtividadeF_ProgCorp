@@ -18,9 +18,6 @@
         <td><%= l(condominium_fee.due_date, format: :date) %></td>
         <td><%= l(condominium_fee.month_ref, format: :month_and_year) %></td>
         <td><%= condominium_fee.paid ? 'Sim' : 'Não' %></td>
-        <td><%= link_to 'Show', condominium_fee %></td>
-        <td><%= link_to 'Edit', edit_condominium_fee_path(condominium_fee) %></td>
-        <td><%= link_to 'Destroy', condominium_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

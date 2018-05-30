@@ -8,7 +8,7 @@ class ApartmentsController < ApplicationController
     if can? :edit, Apartment
       @apartments = Apartment.all
     else
-      @apartments = Apartment.where(resident_id: current_user.id).or(Apartment.where(owner_id: current_user.id))
+      @apartments = current_user.apartments
     end
   end
 
@@ -19,11 +19,17 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/new
   def new
+    unless can? :edit, Apartment
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
     @apartment = Apartment.new
   end
 
   # GET /apartments/1/edit
   def edit
+    unless can? :edit, Apartment
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
   end
 
   # POST /apartments
@@ -59,6 +65,9 @@ class ApartmentsController < ApplicationController
   # DELETE /apartments/1
   # DELETE /apartments/1.json
   def destroy
+    unless can? :edit, Apartment
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
     @apartment.destroy
     respond_to do |format|
       format.html {redirect_to apartments_url, notice: 'Apartment was successfully destroyed.'}

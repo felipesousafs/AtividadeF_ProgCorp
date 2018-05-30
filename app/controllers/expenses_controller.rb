@@ -5,7 +5,13 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    if can? :edit, Expense
+      @expenses = Expense.all
+    else
+      user = current_user
+      @expenses = Expense.where(is_fixed_value: true).or(Expense.where(apartment_id: user.apartments))
+    end
+
   end
 
   # GET /expenses/1
@@ -15,6 +21,9 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/new
   def new
+    unless can? :edit, Expense
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
     @expense = Expense.new
   end
 

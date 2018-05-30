@@ -5,16 +5,25 @@ class CondominiumFeesController < ApplicationController
   # GET /condominium_fees
   # GET /condominium_fees.json
   def index
+    unless can? :edit, CondominiumFee
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
     @condominium_fees = CondominiumFee.all
   end
 
   # GET /condominium_fees/1
   # GET /condominium_fees/1.json
   def show
+    unless can? :edit, CondominiumFee
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
   end
 
   # GET /condominium_fees/new
   def new
+    unless can? :edit, CondominiumFee
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
     @condominium_fee = CondominiumFee.new
   end
 
@@ -52,6 +61,9 @@ class CondominiumFeesController < ApplicationController
   end
 
   def generate_fees
+    unless can? :edit, CondominiumFee
+      redirect_to root_path, alert: 'Acesso negado. Permissão insuficiente.'
+    end
     due_date = params[:condominium_fee][:due_date].to_date
     puts '-----------------------------'
     puts due_date

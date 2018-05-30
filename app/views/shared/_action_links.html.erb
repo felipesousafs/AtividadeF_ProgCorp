@@ -1,18 +1,22 @@
-<%= link_to object, data: { toggle: 'tooltip', placement: 'top', title: 'Visualizar' } do %>
-  <i class="fa fa-eye" title="Ver detalhes"></i>
+<%= link_to object, data: {toggle: 'tooltip', placement: 'top', title: 'Visualizar'} do %>
+    <i class="fa fa-eye" title="Ver detalhes"></i>
 <% end %>
 &nbsp;
-<%= link_to eval_with_rescue("edit_#{object.class.to_s.underscore}_path(#{object.id})"), data: { toggle: 'tooltip', placement: 'top', title: 'Editar' } do %>
-  <i class="fa fa-pencil text-yellow" title="Editar"></i>
+<% if can? :edit, Apartment %>
+    <%= link_to eval_with_rescue("edit_#{object.class.to_s.underscore}_path(#{object.id})"), data: {toggle: 'tooltip', placement: 'top', title: 'Editar'} do %>
+        <i class="fa fa-pencil text-yellow" title="Editar"></i>
+    <% end %>
 <% end %>
 &nbsp;
-<%= link_to object, method: :delete, data: { confirm: 'Tem certeza?', toggle: 'tooltip', placement: 'top', title: 'Apagar' } do %>
-  <i class="fa fa-trash text-red" title="Remover"></i>
+<% if can? :edit, Apartment %>
+    <%= link_to object, method: :delete, data: {confirm: 'Tem certeza?', toggle: 'tooltip', placement: 'top', title: 'Apagar'} do %>
+        <i class="fa fa-trash text-red" title="Remover"></i>
+    <% end %>
 <% end %>
 &nbsp;
 <% if object.respond_to?(:number_of_rooms) %>
-  <% @flag = 'true' %>
-  <%= link_to controller: 'apartments', action: 'fees', id: object do %>
-    <i class="fa fa-money text-green" title="Taxas e Despesas"></i>
-  <% end %>
+    <% @flag = 'true' %>
+    <%= link_to controller: 'apartments', action: 'fees', id: object do %>
+        <i class="fa fa-money text-green" title="Taxas e Despesas"></i>
+    <% end %>
 <% end %>
