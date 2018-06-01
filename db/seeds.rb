@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# puts '[-] Apagando usuários...'
-# User.destroy_all
-# User.reset_pk_sequence
+puts '[-] Apagando usuários...'
+User.destroy_all
+User.reset_pk_sequence
 puts '[-] Apagando taxas de condomínio...'
 CondominiumFee.destroy_all
 CondominiumFee.reset_pk_sequence
@@ -19,15 +19,15 @@ puts '[-] Apagando apartamentos...'
 Apartment.destroy_all
 Apartment.reset_pk_sequence
 
-# puts '[+] Criando Usuários...'
-# 10.times do |i|
-#   User.create!(
-#       email: "teste#{i+1}@email.com",
-#       password: 123456,
-#       name: "Teste #{i+1}",
-#       phone: "86 99#{i}9-999#{i}"
-#   )
-# end
+puts '[+] Criando Usuários...'
+10.times do |i|
+  User.create!(
+      email: "teste#{i+1}@email.com",
+      password: 123456,
+      name: "Teste #{i+1}",
+      phone: "86 99#{i}9-999#{i}"
+  )
+end
 
 puts '[+] Criando Apartamentos...'
 x = 6
