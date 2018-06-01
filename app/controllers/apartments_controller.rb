@@ -76,8 +76,8 @@ class ApartmentsController < ApplicationController
   end
 
   def fees
-    @condominium_fees = @apartment.condominium_fees
-    @expenses = Expense.this_month(Date.today)
+    @condominium_fees = @apartment.condominium_fees.order(due_date: :desc)
+    @expenses = Expense.where(is_fixed_value: true).or(Expense.where(apartment_id: @apartment.id)).order(updated_at: :desc)
   end
 
   private
