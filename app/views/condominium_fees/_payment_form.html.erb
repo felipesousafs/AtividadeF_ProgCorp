@@ -3,11 +3,14 @@
     <div class="row">
       <div class="col-md-10">
         <div class="form-inputs">
-          <h4>Ao clicar em <b>confirmar</b>, você concorda em adiar o pagamento para o mês seguinte, o que acarretará em <b>multa de 5%</b> sobre o valor da taxa de condomínio</h4><br>
           <% if params[:postponed] %>
+              <h4>Ao clicar em <b>confirmar</b>, você concorda em adiar o pagamento para o mês seguinte, o que acarretará em <b>multa de 5%</b> sobre o valor da taxa de condomínio</h4><br>
               <%= check_box_tag :postponed, true, true, hidden: true %>
           <% else %>
-              <%= f.input :paid %>
+              <h4>Clique em <b>confirmar</b> para efetivar o pagamento da taxa de condomínio.</h4><br>
+              <div style="display: none">
+                <%= f.input :paid, hidden: true %>
+              </div>
           <% end %>
         </div>
       </div>

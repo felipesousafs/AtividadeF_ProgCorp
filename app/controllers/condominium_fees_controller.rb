@@ -97,10 +97,7 @@ class CondominiumFeesController < ApplicationController
         end
       end
     else
-      if Date.today > @condominium_fee.due_date
-        @condominium_fee.value += (@condominium_fee.value*2)/100
-      end
-      @condominium_fee.paid = true
+      @condominium_fee.pay
       respond_to do |format|
         if @condominium_fee.save
           format.html { redirect_to root_url, notice: 'A taxa de condomínio selecionada foi marcada como quitada.' }

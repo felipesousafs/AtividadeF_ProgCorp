@@ -2,7 +2,14 @@ class CondominiumFee < ApplicationRecord
   belongs_to :apartment
 
   def month_ref
-    self.created_at
+    self.due_date - 1.month
+  end
+
+  def pay
+    if Date.today > self.due_date
+      self.value += (self.value*2)/100
+    end
+    self.paid = true
   end
 
   def paid_at
@@ -18,7 +25,7 @@ class CondominiumFee < ApplicationRecord
   end
 
   def self.calc_fee_value(ap, due_date)
-    fixed_values = (Expense.this_month(due_date).where(is_fixed_value: true).calculate(:sum, :value)/Apartment.total_rooms)*ap.number_of_rooms
+    fixed_values = (Expense.this_month(due_date - 1.month).where(is_fixed_value: true).calculate(:sum, :value)/Apartment.total_rooms)*ap.number_of_rooms
     ap.expenses.this_month(due_date).calculate(:sum, :value) + fixed_values
   end
 
@@ -40,7 +47,7 @@ class CondominiumFee < ApplicationRecord
   def self.uniq_this_month_validator(ap, due_date)
     already_exists = CondominiumFee.where(apartment: ap)
     if already_exists.size > 0
-      this_month = already_exists.where(created_at: due_date.beginning_of_month..due_date.end_of_month)
+      this_month = already_exists.where(due_date: due_date.beginning_of_month..due_date.end_of_month)
       this_month.size
       if this_month.size > 0
         false
