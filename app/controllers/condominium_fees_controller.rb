@@ -81,12 +81,9 @@ class CondominiumFeesController < ApplicationController
   def pay
     @condominium_fee = CondominiumFee.find(params[:id])
     if params[:postponed]
-      @condominium_fee.postponed = true
-      @expense = Expense.new
-      @expense.apartment = @condominium_fee.apartment
-      @expense.description = 'Multa 5% - Pagamento adiado para mês seguinte'
-      @expense.value = (@condominium_fee.value * 5)/100
-      @expense.month_of_ref = @condominium_fee.created_at + 1.month
+      # Clean Code - Criado método 'CondominiumFee.pospone',
+      # que faz toda a lógica para adiar o pagamento de uma taxa de condomínio
+      @expense = @condominium_fee.postpone
       respond_to do |format|
         if @expense.save and @condominium_fee.save
           format.html { redirect_to root_url, notice: 'O pagamento da taxa de condomínio selecionada foi adiado com sucesso.' }

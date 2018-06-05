@@ -12,6 +12,16 @@ class CondominiumFee < ApplicationRecord
     self.paid = true
   end
 
+  def postpone
+    self.postponed = true
+    expense = Expense.new
+    expense.apartment = self.apartment
+    expense.description = 'Multa 5% - Pagamento adiado para mês seguinte'
+    expense.value = (self.value * 5)/100
+    expense.month_of_ref = self.created_at + 1.month
+    expense
+  end
+
   def paid_at
     if self.paid
       updated_at
