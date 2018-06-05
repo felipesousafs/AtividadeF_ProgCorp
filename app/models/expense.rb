@@ -11,4 +11,8 @@ class Expense < ApplicationRecord
     value.round(2)
   end
 
+  def self.by_apartment(ap)
+    Expense.where(is_fixed_value: true).or(Expense.where(apartment_id: ap.id)).order(updated_at: :desc)
+  end
+
 end
