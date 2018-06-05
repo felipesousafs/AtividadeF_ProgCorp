@@ -20,7 +20,13 @@ Apartment.destroy_all
 Apartment.reset_pk_sequence
 
 puts '[+] Criando Usuários...'
-10.times do |i|
+User.create!(
+    email: "admin@email.com",
+    password: 123456,
+    name: "Administrador",
+    phone: "86 9111-1111"
+)
+9.times do |i|
   User.create!(
       email: "teste#{i+1}@email.com",
       password: 123456,

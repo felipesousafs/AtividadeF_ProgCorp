@@ -9,7 +9,8 @@ class ExpensesController < ApplicationController
       @expenses = Expense.all
     else
       user = current_user
-      @expenses = Expense.where(is_fixed_value: true).or(Expense.where(apartment_id: user.apartments))
+      # Clean Code - reduzindo a complexidade da operação de listar despesas
+      @expenses = Expense.by_apartment(user.apartments)
     end
 
   end
